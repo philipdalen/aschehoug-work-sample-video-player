@@ -1,4 +1,3 @@
-import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 import vue from "@vitejs/plugin-vue"
 import { dirname } from "node:path"
 import { resolve } from "path"
@@ -18,14 +17,8 @@ export default defineConfig({
   plugins: [
     VueDevTools(),
     vue(),
-    VueI18nPlugin({
-      include: resolve(
-        dirname(fileURLToPath(import.meta.url)),
-        "./src/localization/*/**",
-      ),
-    }),
     AutoImport({
-      imports: ["vue", "vue-router",  "vue-i18n"],
+      imports: ["vue", "vue-router"],
       dts: "src/auto-imports.d.ts",
       eslintrc: {
         enabled: true,
