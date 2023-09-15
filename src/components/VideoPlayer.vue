@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center bg-gray-200">
+  <div class="flex flex-col items-center justify-center">
     <Button class="mb-12" @click="triggerFileInput">Last opp video</Button>
     <input
       ref="fileInput"

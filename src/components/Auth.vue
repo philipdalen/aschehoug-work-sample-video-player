@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center bg-gray-200">
+  <div class="flex flex-col items-center justify-center">
     <div v-if="!isAuthenticated">
       <Button @click="login">Logg inn</Button>
     </div>
