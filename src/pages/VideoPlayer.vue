@@ -1,14 +1,19 @@
 <template>
-  <div v-if="!isAuthenticated">
-    <button @click="login">Log in</button>
+  <div
+    v-if="!isAuthenticated"
+    class="flex flex-col items-center justify-center min-h-screen bg-gray-200"
+  >
+    <Button @click="login">Log in</Button>
   </div>
 
   <div v-else class="flex flex-col items-center justify-center min-h-screen bg-gray-200">
-    <h1 class="text-4xl mb-4">{{ user?.name }}</h1>
+    <h1 class="text-4xl mb-4">Welcome {{ user?.name }}</h1>
+    <Button @click="triggerFileInput">Upload Video</Button>
     <input
+      ref="fileInput"
       type="file"
       accept="video/*"
-      class="p-2 border rounded"
+      class="hidden"
       @change="handleVideoUpload"
     />
     <video
@@ -21,16 +26,22 @@
 </template>
 
 <script setup lang="ts">
+import Button from "@/components/Button.vue"
 import { useAuth0 } from "@auth0/auth0-vue"
-import { ref } from "vue"
+import { Ref, ref } from "vue"
 
 const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+const videoUrl = ref("")
+const fileInput: Ref<HTMLInputElement | null> = ref(null)
 
 const login = () => {
   loginWithRedirect()
 }
-const name = ref("Your name")
-const videoUrl = ref("")
+
+function triggerFileInput() {
+  if (!fileInput.value) return
+  fileInput.value.click()
+}
 
 function handleVideoUpload(event: Event) {
   const fileInput = event.target as HTMLInputElement
