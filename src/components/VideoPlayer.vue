@@ -13,7 +13,7 @@
       controls
       autoplay
       :src="videoUrl"
-      class="mt-4 max-w-md w-full border rounded"
+      class="mt-4 max-w-3xl w-full border rounded"
     ></video>
   </div>
 </template>
